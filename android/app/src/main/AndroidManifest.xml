@@ -27,6 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.yandex.mapkit.ApiKey"
+            android:value="f033886d-e416-4df7-9893-a8ae66747a4c"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

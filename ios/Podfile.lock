@@ -54,11 +54,16 @@ PODS:
     - GoogleUtilities/Privacy
   - GTMSessionFetcher/Core (3.5.0)
   - RecaptchaInterop (100.0.0)
+  - yandex_mapkit (0.0.1):
+    - Flutter
+    - YandexMapsMobile (= 4.6.1-lite)
+  - YandexMapsMobile (4.6.1-lite)
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
+  - yandex_mapkit (from `.symlinks/plugins/yandex_mapkit/ios`)
 
 SPEC REPOS:
   trunk:
@@ -72,6 +77,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - RecaptchaInterop
+    - YandexMapsMobile
 
 EXTERNAL SOURCES:
   firebase_auth:
@@ -80,6 +86,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_core/ios"
   Flutter:
     :path: Flutter
+  yandex_mapkit:
+    :path: ".symlinks/plugins/yandex_mapkit/ios"
 
 SPEC CHECKSUMS:
   Firebase: 9f574c08c2396885b5e7e100ed4293d956218af9
@@ -95,6 +103,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
+  yandex_mapkit: 99516c0d4d24d61bcb3711b5944223e8a3d70b46
+  YandexMapsMobile: 7e20ef4db180b901c96f8107fade91d6349248a0
 
 PODFILE CHECKSUM: 25576535548b6fc54c8d969d5d40f93c0da9db0e
 

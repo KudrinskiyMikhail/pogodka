@@ -40,34 +40,40 @@ class _RegScreenState extends State<RegScreen> {
       );
 
       // После успешной регистрации можно сохранить имя пользователя в профиле
-      await userCredential.user?.updateDisplayName(_nameController.text);
+      try {
+        await userCredential.user?.updateDisplayName(_nameController.text);
+      } catch (e) {
+        print('Ошибка при обновлении имени пользователя: $e');
+        // Если не удалось обновить имя, продолжаем дальше
+      }
 
-      // Перенаправление на главный экран или другой экран
-      Navigator.of(context).pushReplacementNamed('/home');
+      // Проверяем, что пользователь успешно зарегистрирован
+      if (FirebaseAuth.instance.currentUser != null) {
+        // Перенаправление на главный экран
+        Navigator.of(context).pushReplacementNamed('/start');
+      } else {
+        setState(() {
+          _errorMessage = 'Не удалось завершить регистрацию. Попробуйте еще раз.';
+        });
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        // Если email уже используется, распечатываем сообщение в логах
-        print('Этот email уже используется. Пожалуйста, войдите в систему.');
         setState(() {
           _errorMessage = 'Этот email уже используется. Пожалуйста, войдите в систему.';
         });
       } else if (e.code == 'weak-password') {
-        print('Пароль слишком слабый.');
         setState(() {
           _errorMessage = 'Пароль слишком слабый.';
         });
       } else if (e.code == 'invalid-email') {
-        print('Неверный формат email.');
         setState(() {
           _errorMessage = 'Неверный формат email.';
         });
       } else if (e.code == 'network-request-failed') {
-        print('Проблемы с сетью. Проверьте подключение к интернету.');
         setState(() {
           _errorMessage = 'Проблемы с сетью. Проверьте подключение к интернету.';
         });
       } else {
-        print('Ошибка: ${e.message}');
         setState(() {
           _errorMessage = 'Ошибка: ${e.message}';
         });
@@ -79,6 +85,7 @@ class _RegScreenState extends State<RegScreen> {
       });
     }
   }
+
 
 
 

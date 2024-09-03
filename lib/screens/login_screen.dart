@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -7,12 +8,58 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscureText = true;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  String _errorMessage = '';
 
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
   }
+
+  void _login() async {
+    try {
+      // Попытка входа пользователя через Firebase Authentication
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // Если вход успешен, перенаправляем на Home
+      Navigator.of(context).pushReplacementNamed('/home');
+
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        setState(() {
+          _errorMessage = 'Пользователь не найден. Пожалуйста, зарегистрируйтесь.';
+        });
+      } else if (e.code == 'wrong-password') {
+        setState(() {
+          _errorMessage = 'Неверный пароль. Попробуйте еще раз.';
+        });
+      } else if (e.code == 'invalid-email') {
+        setState(() {
+          _errorMessage = 'Неверный формат email.';
+        });
+      } else if (e.code == 'network-request-failed') {
+        setState(() {
+          _errorMessage = 'Проблемы с сетью. Проверьте подключение к интернету.';
+        });
+      } else {
+        setState(() {
+          _errorMessage = 'Ошибка: ${e.message}';
+        });
+      }
+    } catch (e) {
+      print('Произошла ошибка. Попробуйте еще раз.');
+      setState(() {
+        Navigator.of(context).pushReplacementNamed('/home');
+        _errorMessage = 'Произошла ошибка. Попробуйте еще раз.';
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,17 +124,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                       hintText: 'name@example.com',
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
@@ -99,10 +147,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 5),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
+                    controller: _passwordController,
                     obscureText: _obscureText,
                     decoration: InputDecoration(
                       hintText: '********',
@@ -116,15 +165,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    _errorMessage,
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Логика входа
-                      },
+                      onPressed: _login,
                       child: Text('Войти',
                         style: TextStyle(color: Colors.white),
                       ),

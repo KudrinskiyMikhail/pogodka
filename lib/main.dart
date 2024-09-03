@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pogodka/screens/home_screen.dart';
 // import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
 import 'screens/login_screen.dart';
@@ -30,16 +31,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: StartScreen(),
       routes: {
         '/login': (context) => LoginScreen(),
-        '/reg': (context) => RegScreen(),// Добавляем маршрут для экрана входа
+        '/reg': (context) => RegScreen(),
+        '/start': (context) => StartScreen(),
+        '/home': (context) => HomeScreen(),
       },
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
