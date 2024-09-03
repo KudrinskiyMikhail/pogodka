@@ -1,0 +1,56 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "pogodka-4ca3b",
+          "appId": "1:9301876335:android:7e42e480454c901ae0b79a",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "pogodka-4ca3b",
+          "appId": "1:9301876335:ios:dd4032ceb7e40feae0b79a",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "pogodka-4ca3b",
+          "appId": "1:9301876335:ios:64712a446f75ec89e0b79a",
+          "uploadDebugSymbols": false,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "pogodka-4ca3b",
+          "configurations": {
+            "android": "1:9301876335:android:7e42e480454c901ae0b79a",
+            "ios": "1:9301876335:ios:dd4032ceb7e40feae0b79a"
+          }
+        }
+      }
+    }
+  },
+  "emulators": {
+    "singleProjectMode": true,
+    "auth": {
+      "port": 9099
+    },
+    "firestore": {
+      "host": "localhost",
+      "port": 8088,
+      "websocketPort": 9223
+    },
+    "database": {
+      "port": 9000
+    },
+    "ui": {
+      "enabled": false,
+      "port": 4001
+    }
+  }
+}

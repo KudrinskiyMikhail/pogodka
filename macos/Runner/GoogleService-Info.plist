@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyD_7eySg2zGTB6gXw6iU4_iU7wZPo74Mw0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>9301876335</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.pogodka.ios</string>
+	<key>PROJECT_ID</key>
+	<string>pogodka-4ca3b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pogodka-4ca3b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:9301876335:ios:64712a446f75ec89e0b79a</string>
+</dict>
+</plist>
